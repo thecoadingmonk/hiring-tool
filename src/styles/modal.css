@@ -1,0 +1,14 @@
+.modal.enter {
+  opacity: 0.5;
+}
+.modal.enter-done {
+  opacity: 1;
+}
+
+.modal.exit {
+  opacity: 0;
+}
+
+.modal-content {
+  transition: all 0.3s ease-in-out;
+}

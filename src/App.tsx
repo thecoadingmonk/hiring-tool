@@ -75,7 +75,9 @@ const App = () => {
         />
       </div>
 
-      <Modal show={show}>This is modal</Modal>
+      <Modal show={show} onClose={() => setShow((prev) => !prev)}>
+        This is modal
+      </Modal>
     </div>
   );
 };
