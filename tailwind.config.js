@@ -7,6 +7,7 @@ module.exports = {
     extend: {
       colors: {
         gray: {
+          10: "#D8D8D8",
           20: "#E6E6E6",
         },
         font: {
@@ -22,6 +23,14 @@ module.exports = {
       fontFamily: {
         poppins: ["Poppins", "sans-serif"],
       },
+    },
+    screens: {
+      xsm: "520px",
+      sm: "640px",
+      md: "768px",
+      lg: "1024px",
+      xl: "1280px",
+      "2xl": "1536px",
     },
   },
   plugins: [

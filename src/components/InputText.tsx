@@ -1,11 +1,10 @@
 import type { FC } from "react";
-import type { InputProps } from "../types/Input";
+import type { InputTextProps } from "../types/InputText";
 
-const Input: FC<InputProps> = ({
+const InputText: FC<InputTextProps> = ({
   value,
   label,
   placeholder,
-  type = "text",
   name = "input",
   id = "input",
   errorMessage = "",
@@ -14,7 +13,7 @@ const Input: FC<InputProps> = ({
   ref = null,
   onChange = () => null,
   onBlur = () => null,
-}: InputProps) => {
+}: InputTextProps) => {
   return (
     <>
       <label
@@ -28,7 +27,7 @@ const Input: FC<InputProps> = ({
       </label>
       <input
         value={value}
-        type={type}
+        type="text"
         className={`border border-gray-20 rounded-[5px] placeholder:text-font-placeholder font-normal text-sm py-2 px-3 w-full ${
           errorMessage ? "focus:outline-font-error" : ""
         }`}
@@ -51,4 +50,4 @@ const Input: FC<InputProps> = ({
     </>
   );
 };
-export default Input;
+export default InputText;
