@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Button from "./components/Button";
 import InputText from "./components/InputText";
 import RadioGroup from "./components/RadioGroup";
+import Modal from "./components/Modal";
 
 import type { RadioGroupProps } from "./types/RadioGroup";
 
@@ -10,9 +11,10 @@ import "./index.css";
 const App = () => {
   const [inputState, setInputState] = useState("");
   const [radioButtonState, setRadioButtonState] = useState("");
+  const [show, setShow] = useState(false);
 
   const handleClick = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) =>
-    console.log(e);
+    setShow((prev) => !prev);
 
   const radioGroupItems: RadioGroupProps["items"] = [
     {
@@ -72,6 +74,8 @@ const App = () => {
           items={radioGroupItems}
         />
       </div>
+
+      <Modal show={show}>This is modal</Modal>
     </div>
   );
 };
