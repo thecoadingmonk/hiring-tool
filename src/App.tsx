@@ -1,13 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
 import Button from "./components/Button";
 import Input from "./components/Input";
 
 import "./index.css";
 
-const handleClick = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) =>
-  console.log(e);
+const App = () => {
+  const [state, setState] = useState("");
 
-function App() {
+  const handleClick = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) =>
+    console.log(e);
+
   return (
     <div>
       <div>
@@ -29,12 +31,14 @@ function App() {
         <Input
           label="Job title"
           placeholder="ex. UX UI Designer"
+          value={state}
+          onChange={(e) => setState(e.target.value)}
           // errorMessage="This field is required"
           required
         />
       </div>
     </div>
   );
-}
+};
 
 export default App;
