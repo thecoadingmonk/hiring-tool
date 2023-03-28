@@ -1,18 +1,24 @@
 import { FC, useState } from "react";
-
 import { useForm } from "react-hook-form";
 
 import Modal from "./Modal";
 import InputText from "./InputText";
 import Button from "./Button";
+import RadioGroup from "./RadioGroup";
 
 import type { ModalProps } from "../types/Modal";
+import type { RadioGroupProps } from "../types/RadioGroup";
 
 interface JobFormProps {
   show: boolean;
-  onClose: ModalProps["onClose"];
+  onClose?: ModalProps["onClose"];
+  onFormSubmit?: (param: object) => void;
 }
-const JobForm: FC<JobFormProps> = ({ show, onClose }: JobFormProps) => {
+const JobForm: FC<JobFormProps> = ({
+  show,
+  onClose,
+  onFormSubmit,
+}: JobFormProps) => {
   const defaultValues = {
     jobTitle: "",
     companyName: "",
@@ -24,7 +30,9 @@ const JobForm: FC<JobFormProps> = ({ show, onClose }: JobFormProps) => {
     maxSalary: "",
     totalEmployee: "",
     remoteType: "",
+    applyType: "",
   };
+
   const {
     handleSubmit,
     formState: { errors },
@@ -34,15 +42,28 @@ const JobForm: FC<JobFormProps> = ({ show, onClose }: JobFormProps) => {
     reValidateMode: "onBlur",
     defaultValues,
   });
+  const applyType: RadioGroupProps["items"] = [
+    {
+      value: "quick-apply",
+      label: "Quick apply",
+      ...register("applyType"),
+    },
+    {
+      value: "external-apply",
+      label: "External apply",
+      ...register("applyType"),
+    },
+  ];
   const [formData, setFormData] = useState({});
   const [currentStep, setCurrentStep] = useState(1);
 
   const onSubmit = (values: any, stepCount: number) => {
-    if (stepCount <= 2) {
+    if (stepCount < 2) {
       setCurrentStep((prev) => prev + 1);
+      setFormData((prev) => ({ ...prev, ...values }));
+    } else {
+      onFormSubmit?.({ ...formData, ...values });
     }
-    setFormData((prev) => ({ ...prev, ...values }));
-    console.log(formData);
   };
 
   return (
@@ -144,6 +165,14 @@ const JobForm: FC<JobFormProps> = ({ show, onClose }: JobFormProps) => {
               label="Total employee"
               placeholder="ex. 100"
               {...register("totalEmployee")}
+            />
+          </div>
+
+          <div className="mt-6">
+            <RadioGroup
+              legend="Apply type"
+              items={applyType}
+              flow="horizontal"
             />
           </div>
 

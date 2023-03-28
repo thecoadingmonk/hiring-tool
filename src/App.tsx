@@ -39,35 +39,18 @@ const App = () => {
     <div>
       <div>
         <Button onClick={handleClick} variant="contained">
-          Apply Now
-        </Button>
-        <Button onClick={handleClick} variant="outlined">
-          External Apply
-        </Button>
-        <Button onClick={handleClick} variant="contained">
-          Next
-        </Button>
-        <Button onClick={handleClick} variant="contained">
-          Save
+          Create a job
         </Button>
       </div>
 
-      <div>
-        <InputText
-          label="Job title"
-          placeholder="ex. UX UI Designer"
-          value={inputState}
-          onChange={(e) => setInputState(e.target.value)}
-          // errorMessage="This field is required"
-          required
-        />
-      </div>
-
-      <div>
-        <RadioGroup legend="Apply type" items={radioGroupItems} />
-      </div>
-
-      <JobForm show={show} onClose={() => setShow(false)} />
+      <JobForm
+        show={show}
+        onClose={() => setShow(false)}
+        onFormSubmit={(v) => {
+          console.log(v);
+          setShow(false);
+        }}
+      />
     </div>
   );
 };
