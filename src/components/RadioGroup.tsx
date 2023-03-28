@@ -19,8 +19,8 @@ const RadioGroup: FC<RadioGroupProps> = ({
             : "grid-flow-row xsm:grid-flow-col"
         }`}
       >
-        {items.map((props) => (
-          <RadioButton {...props} />
+        {items.map((props, i) => (
+          <RadioButton key={`${i} ${props.id || ""}`} {...props} />
         ))}
       </fieldset>
     </>

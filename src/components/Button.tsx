@@ -6,6 +6,7 @@ const Button: FC<ButtonProps> = ({
   variant,
   onClick,
   disabled = false,
+  type = "button",
 }: ButtonProps) => {
   /**
    * Button style is an object contains all the different classes that can be applied to button
@@ -26,6 +27,7 @@ const Button: FC<ButtonProps> = ({
       onClick={onClick}
       className={`${buttonSytle.common} ${buttonSytle[variant]}`}
       disabled={disabled}
+      type={type}
     >
       {children}
     </button>

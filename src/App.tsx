@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Button from "./components/Button";
 import InputText from "./components/InputText";
 import RadioGroup from "./components/RadioGroup";
-import Modal from "./components/Modal";
+import JobForm from "./components/JobForm";
 
 import type { RadioGroupProps } from "./types/RadioGroup";
 
@@ -67,17 +67,7 @@ const App = () => {
         <RadioGroup legend="Apply type" items={radioGroupItems} />
       </div>
 
-      <div>
-        <RadioGroup
-          flow="horizontal"
-          legend="Apply type"
-          items={radioGroupItems}
-        />
-      </div>
-
-      <Modal show={show} onClose={() => setShow((prev) => !prev)}>
-        This is modal
-      </Modal>
+      <JobForm show={show} onClose={() => setShow(false)} />
     </div>
   );
 };

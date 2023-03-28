@@ -1,53 +1,51 @@
-import type { FC } from "react";
+import React, { forwardRef, ForwardRefRenderFunction } from "react";
 import type { InputTextProps } from "../types/InputText";
 
-const InputText: FC<InputTextProps> = ({
-  value,
-  label,
-  placeholder,
-  name = "input",
-  id = "input",
-  errorMessage = "",
-  required = false,
-  defaultValue,
-  ref = null,
-  onChange = () => null,
-  onBlur = () => null,
-}: InputTextProps) => {
+const InputText: ForwardRefRenderFunction<HTMLInputElement, InputTextProps> = (
+  props,
+  ref
+) => {
+  const {
+    value,
+    label,
+    name = "",
+    error = "",
+    required = false,
+    onChange = () => null,
+    onBlur = () => null,
+  } = props;
+
   return (
-    <>
+    <div className="flex flex-col">
       <label
         htmlFor={name}
         data-content="*"
         className={`${
           required ? "after:content after:text-font-error" : ""
-        } font-medium text-sm text-font-dark`}
+        } font-medium text-sm text-font-dark mb-1 empty:mb-6`}
       >
         {label}
       </label>
       <input
+        {...props}
         value={value}
         type="text"
         className={`border border-gray-20 rounded-[5px] placeholder:text-font-placeholder font-normal text-sm py-2 px-3 w-full ${
-          errorMessage ? "focus:outline-font-error" : ""
+          error ? "focus:outline-font-error" : ""
         }`}
-        placeholder={placeholder}
-        name={name}
-        id={id}
-        required={required}
-        defaultValue={defaultValue}
-        ref={ref}
+        required={false}
         onChange={onChange}
         onBlur={onBlur}
+        ref={ref}
       />
       <p
         className={`text-font-error text-xs mt-0.5 ${
-          errorMessage ? "visible" : "invisible"
+          error ? "visible" : "invisible"
         }`}
       >
-        {errorMessage}
+        {error}
       </p>
-    </>
+    </div>
   );
 };
-export default InputText;
+export default forwardRef(InputText);

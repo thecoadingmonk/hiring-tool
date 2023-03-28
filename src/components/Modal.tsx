@@ -13,17 +13,24 @@ const Portal: FC<{ children: ReactElement }> = ({
 
   useEffect(() => {
     const modalRoot = document.getElementById("modal-root");
-    modalRoot?.appendChild(el.current);
+    const element = el.current;
+
+    modalRoot?.appendChild(element);
 
     return () => {
-      modalRoot?.removeChild(el.current);
+      modalRoot?.removeChild(element);
     };
   }, []);
 
   return ReactDOM.createPortal(children, el.current);
 };
 
-const Modal: FC<ModalProps> = ({ children, show, onClose }: ModalProps) => {
+const Modal: FC<ModalProps> = ({
+  children,
+  show,
+  onClose,
+  className,
+}: ModalProps) => {
   return (
     <CSSTransition
       in={show}
@@ -40,7 +47,7 @@ const Modal: FC<ModalProps> = ({ children, show, onClose }: ModalProps) => {
           }}
         >
           <div
-            className="modal-content bg-white p-8 rounded-[10px] border border-gray-20"
+            className={`modal-content bg-white p-8 rounded-[10px] border border-gray-20 ${className}`}
             onClick={(e) => e.stopPropagation()}
           >
             {children}

@@ -4,10 +4,11 @@ enum Variant {
 }
 
 export interface ButtonProps {
-  children: string;
+  children: ReactElement;
   variant: keyof typeof Variant;
-  onClick: (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
   disabled?: boolean;
+  type?: "button" | "submit";
+  onClick?: (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
 }
 
 export type ButtonStyle = {
