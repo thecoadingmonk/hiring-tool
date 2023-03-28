@@ -12,6 +12,7 @@ const App = () => {
   const [inputState, setInputState] = useState("");
   const [radioButtonState, setRadioButtonState] = useState("");
   const [show, setShow] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleClick = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) =>
     setShow((prev) => !prev);
@@ -48,8 +49,14 @@ const App = () => {
         onClose={() => setShow(false)}
         onFormSubmit={(v) => {
           console.log(v);
-          setShow(false);
+          setIsLoading(true);
+          setTimeout(() => {
+            setIsLoading(false);
+            setShow(false);
+          }, 5000);
         }}
+        isLoading={isLoading}
+        hasError={false}
       />
     </div>
   );

@@ -22,7 +22,7 @@ const InputText: ForwardRefRenderFunction<HTMLInputElement, InputTextProps> = (
         data-content="*"
         className={`${
           required ? "after:content after:text-font-error" : ""
-        } font-medium text-sm text-font-dark mb-1 empty:mb-6`}
+        } font-medium text-sm text-font-dark mb-1 sm:empty:mb-6`}
       >
         {label}
       </label>
