@@ -9,6 +9,9 @@ module.exports = {
         gray: {
           10: "#D8D8D8",
           20: "#E6E6E6",
+          30: "#DADEDF",
+          40: "#646464",
+          50: "#212427",
         },
         font: {
           dark: "#212121",
@@ -23,6 +26,14 @@ module.exports = {
       fontFamily: {
         poppins: ["Poppins", "sans-serif"],
       },
+      gridTemplateColumns: {
+        "auto-fit": "repeat(auto-fit, minmax(0, 1fr))",
+        "auto-fill": "repeat(auto-fill, minmax(0, 1fr))",
+      },
+      gridTemplateRows: {
+        "auto-fit": "repeat(auto-fit, minmax(0, 1fr))",
+        "auto-fill": "repeat(auto-fill, minmax(0, 1fr))",
+      },
     },
     screens: {
       xsm: "520px",
@@ -31,6 +42,7 @@ module.exports = {
       lg: "1024px",
       xl: "1280px",
       "2xl": "1536px",
+      "3xl": "2960px",
     },
   },
   plugins: [

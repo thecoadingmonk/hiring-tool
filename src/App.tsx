@@ -3,6 +3,7 @@ import Button from "./components/Button";
 import InputText from "./components/InputText";
 import RadioGroup from "./components/RadioGroup";
 import JobForm from "./components/JobForm";
+import JobCard from "./components/JobCard";
 
 import type { RadioGroupProps } from "./types/RadioGroup";
 
@@ -36,12 +37,32 @@ const App = () => {
     },
   ];
 
+  const defaultJobCards = Array(11).fill({
+    jobTitle: "UX UI Designer",
+    companyName: "Great Vibes",
+    industry: "Information Technology",
+    location: "Chennai, Tamilnadu, India",
+    minExperience: 1,
+    maxExperience: 2,
+    minSalary: 30000,
+    maxSalary: 60000,
+    totalEmployee: "51-200",
+    remoteType: "In-office",
+    applyType: "external-apply",
+  });
+
   return (
-    <div>
-      <div>
+    <div className="h-screen overflow-hidden">
+      <div className="p-4">
         <Button onClick={handleClick} variant="contained">
           Create a job
         </Button>
+      </div>
+
+      <div className="job-card-container h-[90%] overflow-scroll bg-gray-10 p-4">
+        {defaultJobCards.map((each) => (
+          <JobCard info={each} />
+        ))}
       </div>
 
       <JobForm
