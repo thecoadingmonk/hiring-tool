@@ -12,3 +12,5 @@ export type Job = {
   remoteType?: string;
   applyType?: "external-apply" | "quick-apply";
 };
+
+export type OperationType = "edit" | "delete" | "create";

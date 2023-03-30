@@ -1,15 +1,18 @@
 import { useState, useEffect } from "react";
+import { useBetween } from "use-between";
+
 import { getJobs } from "../service/query";
 
 import type { Job } from "../types/Common";
 
 const useJobs = () => {
-  const [jobs, setJobs] = useState<Job[]>([] as Job[]);
+  const [jobs, setJobs] = useState<Job[]>([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
 
   const immediateUpdate = (job: Job, type: "delete" | "update" | "create") => {
     const index = jobs.findIndex((i) => i.id === job.id);
+
     switch (type) {
       case "create": {
         setJobs((prev) => [...prev, job]);
@@ -49,7 +52,15 @@ const useJobs = () => {
     fetchJobs();
   }, []);
 
-  return { jobs, isLoading, error, refetch: fetchJobs, immediateUpdate };
+  return {
+    jobs,
+    isLoading,
+    error,
+    refetch: fetchJobs,
+    immediateUpdate,
+  };
 };
 
-export default useJobs;
+const useJobsQuery = () => useBetween(useJobs);
+
+export default useJobsQuery;

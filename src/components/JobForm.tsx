@@ -160,7 +160,7 @@ const JobForm: FC<JobFormProps> = ({
               placeholder="ex. Information Technology"
               required
               {...register("industry", { required: true })}
-              error={errors.industry ? "Company name is required" : ""}
+              error={errors.industry ? "Industry is required" : ""}
             />
           </div>
 

@@ -1,91 +1,74 @@
+// Library
 import React, { useState } from "react";
 
+// Components
 import Button from "./components/Button";
 import JobForm from "./components/JobForm";
 import JobCard from "./components/JobCard";
 import Spinner from "./components/Spinner";
 
-import useJobs from "./hooks/useJobs";
+// Hooks
+import useJobsQuery from "./hooks/useJobsQuery";
+import useJobsMutation from "./hooks/useJobsMutation";
 
-import type { Job } from "./types/Common";
+// Types
+import type { Job, OperationType } from "./types/Common";
 
+// Service
 import { createJob, deleteJob, editJob } from "./service/mutations";
 
+// Style
 import "./index.css";
 
 const App = () => {
-  const {
-    jobs,
-    refetch,
-    immediateUpdate,
-    error: jobsError,
-    isLoading: isJobsLoading,
-  } = useJobs();
-  const [showCreateJobForm, setShowCreateJobForm] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
-  const [deletingJob, setDeletingJob] = useState<string>();
-  const [error, setError] = useState("");
+  // State variables
+  const [showJobForm, setShowJobForm] = useState<boolean>(false);
   const [formDefaultValues, setFormDefaultValues] = useState<Job | undefined>();
 
+  const handleMutationCallback = (type: OperationType) => {
+    switch (type) {
+      case "create":
+        // Close the job form after complete
+        toggleJobFormModal();
+        break;
+      case "edit":
+        onEdit();
+        break;
+    }
+  };
+
+  // Job query hook to load jobs
+  const { jobs, error: jobsError, isLoading: isJobsLoading } = useJobsQuery();
+
+  const {
+    isLoading,
+    deletingJob,
+    error,
+    handleCreate,
+    handleEdit,
+    handleDelete,
+  } = useJobsMutation({
+    callback: handleMutationCallback,
+  });
+
+  // This function is to toggle Job form while creating and editing
   const toggleJobFormModal = () => {
-    setShowCreateJobForm((prev) => !prev);
-    if (formDefaultValues) {
+    setShowJobForm((prev) => !prev);
+
+    // If the form is opened in edit mode then clear the value after closing
+    if (showJobForm && formDefaultValues) {
       setFormDefaultValues(undefined);
     }
   };
 
+  // Form can be opened in two modes `create` and `edit` trigger function accordingly
   const handleFormSubmit = (job: Job) => {
+    // When we have `formDefaultValues` value set then user is trying to edit the Job
     if (formDefaultValues) {
       handleEdit(job);
     } else {
       handleCreate(job);
     }
-  };
-
-  const handleCreate = (job: Job) => {
-    setIsLoading(true);
-    createJob({ data: job })
-      .then((job) => {
-        immediateUpdate(job, "create");
-        toggleJobFormModal();
-      })
-      .catch((e: string) => {
-        setError(e);
-        refetch();
-      })
-      .finally(() => {
-        setIsLoading(false);
-      });
-  };
-
-  const handleEdit = (job: Job) => {
-    setIsLoading(true);
-    editJob({ data: job })
-      .then(() => {
-        immediateUpdate(job, "update");
-        onEdit();
-      })
-      .catch((e: string) => {
-        setError(e);
-        refetch();
-      })
-      .finally(() => {
-        setIsLoading(false);
-      });
-  };
-
-  const handleDelete = (id: string) => {
-    setDeletingJob(id);
-    deleteJob({ id })
-      .then((job) => {
-        immediateUpdate(job, "delete");
-      })
-      .catch(() => {
-        refetch();
-      })
-      .finally(() => {
-        setDeletingJob(undefined);
-      });
   };
 
   const onEdit = (formValues?: Job) => {
@@ -107,7 +90,7 @@ const App = () => {
         </div>
       ) : jobs.length ? (
         <div className="job-card-container h-[90%] overflow-scroll bg-gray-10 p-4">
-          {jobs.map((each) => (
+          {jobs.map((each: Job) => (
             <JobCard
               key={each.id}
               info={each}
@@ -126,7 +109,7 @@ const App = () => {
       )}
 
       <JobForm
-        show={showCreateJobForm}
+        show={showJobForm}
         onClose={toggleJobFormModal}
         onFormSubmit={handleFormSubmit}
         isLoading={isLoading}
