@@ -1,15 +1,12 @@
 import React, { useState } from "react";
 
 import Button from "./components/Button";
-import InputText from "./components/InputText";
-import RadioGroup from "./components/RadioGroup";
 import JobForm from "./components/JobForm";
 import JobCard from "./components/JobCard";
 import Spinner from "./components/Spinner";
 
 import useJobs from "./hooks/useJobs";
 
-import type { RadioGroupProps } from "./types/RadioGroup";
 import type { Job } from "./types/Common";
 
 import { createJob, deleteJob, editJob } from "./service/mutations";
@@ -24,8 +21,6 @@ const App = () => {
     error: jobsError,
     isLoading: isJobsLoading,
   } = useJobs();
-  const [inputState, setInputState] = useState("");
-  const [radioButtonState, setRadioButtonState] = useState("");
   const [showCreateJobForm, setShowCreateJobForm] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [deletingJob, setDeletingJob] = useState<string>();

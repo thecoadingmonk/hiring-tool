@@ -1,4 +1,3 @@
-import type { AxiosError } from "axios";
 import axios from "axios";
 
 import type { Job } from "../types/Common";

@@ -39,7 +39,7 @@ const JobCard: FC<JobCardProps> = ({
   return (
     <div className="flex gap-2 bg-white border border-gray-30 rounded-[10px] py-4 px-6 max-w-[830px] max-h-[324px]">
       <div>
-        <img src={require("../assets/netflix_logo.png")} />
+        <img src={require("../assets/netflix_logo.png")} alt="logo" />
       </div>
       <div className="block max-w-[830px] overflow-hidden w-full">
         <header className="whitespace-nowrap max-w-[700px] text-ellipsis overflow-hidden">
