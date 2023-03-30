@@ -8,13 +8,14 @@ import RadioGroup from "./RadioGroup";
 
 import type { ModalProps } from "../types/Modal";
 import type { RadioGroupProps } from "../types/RadioGroup";
+import { Job } from "../types/Common";
 
 interface JobFormProps {
   show: boolean;
   onClose?: ModalProps["onClose"];
   isLoading?: boolean;
   hasError?: boolean;
-  onFormSubmit?: (param: object) => void;
+  onFormSubmit?: (param: Job) => void;
 }
 const JobForm: FC<JobFormProps> = ({
   show,

@@ -1,21 +1,10 @@
 import type { FC } from "react";
 
 import Button from "./Button";
+import { Job } from "../types/Common";
 
 interface JobCardProps {
-  info: {
-    jobTitle: string;
-    companyName: string;
-    industry: string;
-    location: string;
-    minExperience: number | string;
-    maxExperience: number | string;
-    minSalary: number | string;
-    maxSalary: number | string;
-    totalEmployee: number | string;
-    remoteType: string;
-    applyType: string;
-  };
+  info: Job;
 }
 
 const JobCard: FC<JobCardProps> = ({ info }: JobCardProps) => {
@@ -33,7 +22,7 @@ const JobCard: FC<JobCardProps> = ({ info }: JobCardProps) => {
     applyType,
   } = info;
   return (
-    <div className="flex gap-2 bg-white border border-gray-30 rounded-[10px] py-4 px-6 max-w-[830px]">
+    <div className="flex gap-2 bg-white border border-gray-30 rounded-[10px] py-4 px-6 max-w-[830px] max-h-[324px]">
       <div>
         <img src={require("../assets/netflix_logo.png")} />
       </div>
