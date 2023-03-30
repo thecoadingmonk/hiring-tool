@@ -81,6 +81,31 @@ const JobForm: FC<JobFormProps> = ({
     }
   };
 
+  const numberValidator = (val: unknown): string | boolean => {
+    if (val && typeof val === "string" && isNaN(Number(val))) {
+      return "Please enter valid number";
+    }
+
+    return true;
+  };
+
+  const evaluate = (val1: unknown, val2: unknown, operator: string) => {
+    if (val1 && val2 && !eval(val1 + operator + val2)) {
+      switch (operator) {
+        case "<=": {
+          return `value cannot be greater than ${val2}`;
+        }
+        case ">=": {
+          return `value cannot be lesser than ${val2}`;
+        }
+        default:
+          return "Please enter valid number";
+      }
+    }
+
+    return true;
+  };
+
   useEffect(() => {
     if (!show) {
       clearForm();
@@ -166,13 +191,23 @@ const JobForm: FC<JobFormProps> = ({
             <InputText
               label="Experience"
               placeholder="Minimum"
-              {...register("minExperience")}
+              {...register("minExperience", {
+                validate: (v, f) =>
+                  numberValidator(v) &&
+                  evaluate(f.minExperience, f.maxExperience, "<="),
+              })}
+              error={errors?.minExperience?.message || ""}
             />
 
             <InputText
               label=""
               placeholder="Maximum"
-              {...register("maxExperience")}
+              {...register("maxExperience", {
+                validate: (v, f) =>
+                  numberValidator(v) &&
+                  evaluate(f.maxExperience, f.minExperience, ">="),
+              })}
+              error={errors?.maxExperience?.message || ""}
             />
           </div>
 
@@ -180,13 +215,23 @@ const JobForm: FC<JobFormProps> = ({
             <InputText
               label="Salary"
               placeholder="Minimum"
-              {...register("minSalary")}
+              {...register("minSalary", {
+                validate: (v, f) =>
+                  numberValidator(v) &&
+                  evaluate(f.minSalary, f.maxSalary, "<="),
+              })}
+              error={errors?.minSalary?.message || ""}
             />
 
             <InputText
               label=""
               placeholder="Maximum"
-              {...register("maxSalary")}
+              {...register("maxSalary", {
+                validate: (v, f) =>
+                  numberValidator(v) &&
+                  evaluate(f.maxSalary, f.minSalary, ">="),
+              })}
+              error={errors?.maxSalary?.message || ""}
             />
           </div>
 

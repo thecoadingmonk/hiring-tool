@@ -1,17 +1,11 @@
 import { fetch } from "./fetch";
-import { API_ENDPOINTS } from "../constants/index";
+import { API_ENDPOINT } from "../constants/index";
 
 import type { Job } from "../types/Common";
 
 export const getJobs = async () => {
   return fetch<Job[]>({
-    url: API_ENDPOINTS,
+    url: API_ENDPOINT,
     method: "GET",
-  })
-    .then((res: Job[]) => {
-      return res;
-    })
-    .catch(() => {
-      return [] as Job[];
-    });
+  });
 };

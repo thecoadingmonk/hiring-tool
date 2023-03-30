@@ -23,7 +23,7 @@ export const fetch = <T>({
         resolve(data);
       })
       .catch(({ response }) => {
-        console.log(response);
+        console.error(response);
         const message =
           (response?.data &&
             typeof response?.data === "string" &&

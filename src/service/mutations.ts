@@ -1,11 +1,11 @@
 import { fetch } from "./fetch";
-import { API_ENDPOINTS } from "../constants/index";
+import { API_ENDPOINT } from "../constants/index";
 
 import type { Job } from "../types/Common";
 
 export const createJob = ({ data }: { data: Job }) => {
   return fetch<Job>({
-    url: API_ENDPOINTS,
+    url: API_ENDPOINT,
     method: "POST",
     data,
   });
@@ -13,7 +13,7 @@ export const createJob = ({ data }: { data: Job }) => {
 
 export const editJob = ({ data }: { data: Job }) => {
   return fetch<Job>({
-    url: `${API_ENDPOINTS}/${data.id}`,
+    url: `${API_ENDPOINT}/${data.id}`,
     method: "PUT",
     data,
   });
@@ -21,7 +21,7 @@ export const editJob = ({ data }: { data: Job }) => {
 
 export const deleteJob = ({ id }: { id: string }) => {
   return fetch<Job>({
-    url: `${API_ENDPOINTS}/${id}`,
+    url: `${API_ENDPOINT}/${id}`,
     method: "DELETE",
   });
 };
