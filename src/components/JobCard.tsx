@@ -30,31 +30,36 @@ const JobCard: FC<JobCardProps> = ({
     totalEmployee = 1,
     applyType,
   } = info;
+
   return (
     <div className="flex gap-2 bg-white border border-gray-30 rounded-[10px] py-4 px-6 max-w-[830px] max-h-[324px]">
       <div>
         <img src={require("../assets/netflix_logo.png")} />
       </div>
-      <div>
-        <header>
-          <h4 className="font-normal text-2xl">{jobTitle}</h4>
-          <h6 className="font-normal  text-base">
+      <div className="block max-w-[830px] overflow-hidden w-full">
+        <header className="whitespace-nowrap max-w-[700px] text-ellipsis overflow-hidden">
+          <h4 className="font-normal text-2xl whitespace-nowrap max-w-[700px] text-ellipsis overflow-hidden">
+            {jobTitle}
+          </h4>
+          <h6 className="font-normal text-base whitespace-nowrap max-w-[700px] text-ellipsis overflow-hidden">
             {companyName} - {industry}
           </h6>
-          <p className="text-gray-40 font-normal  text-base">
-            {location} {remoteType}
+          <p className="text-gray-40 font-normal text-base whitespace-nowrap max-w-[700px] text-ellipsis overflow-hidden empty:mt-6">
+            {/* This condition is to make empty selector work if not present */}
+            {location ? location : ""}
+            {remoteType ? ` ${remoteType}` : ""}
           </p>
         </header>
 
-        <div className=" grid mt-6 text-gray-50 text-base font-normal gap-2">
+        <div className="grid mt-6 text-gray-50 text-base font-normal gap-2">
           <p>Part-Time (9.00 am - 5.00 pm IST)</p>
           <p>
-            Experience ({minExperience} - {maxExperience} years)
+            Experience ({minExperience || 0} - {maxExperience || 0} years)
           </p>
           <p>
-            INR (₹) {minSalary} - {maxSalary} / Month
+            INR (₹) {minSalary || 0} - {maxSalary || 0} / Month
           </p>
-          <p>{totalEmployee} employees</p>
+          <p>{totalEmployee || 1} employee(s)</p>
         </div>
 
         <div className="flex justify-between empty:mt-0 mt-6 gap-6">
