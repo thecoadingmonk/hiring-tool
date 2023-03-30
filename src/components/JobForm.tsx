@@ -266,7 +266,7 @@ const JobForm: FC<JobFormProps> = ({
             ) : null}
             <Button variant="contained" type="submit" disabled={isLoading}>
               <span className="flex items-center justify-center">
-                {isLoading ? <Spinner className="text-white" /> : null}
+                {isLoading ? <Spinner className="text-white mr-2" /> : null}
                 Save
               </span>
             </Button>
