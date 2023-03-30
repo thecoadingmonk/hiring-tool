@@ -91,6 +91,7 @@ const JobForm: FC<JobFormProps> = ({
   };
 
   const evaluate = (val1: unknown, val2: unknown, operator: string) => {
+    // eslint-disable-next-line
     if (val1 && val2 && !eval(val1 + operator + val2)) {
       switch (operator) {
         case "<=": {
@@ -111,6 +112,7 @@ const JobForm: FC<JobFormProps> = ({
     if (!show) {
       clearForm();
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [show]);
 
   useEffect(() => {
@@ -120,6 +122,7 @@ const JobForm: FC<JobFormProps> = ({
         setValue(key, formDefaultValues[key]);
       });
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [formDefaultValues]);
 
   return (
