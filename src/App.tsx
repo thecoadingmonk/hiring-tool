@@ -14,9 +14,6 @@ import useJobsMutation from "./hooks/useJobsMutation";
 // Types
 import type { Job, OperationType } from "./types/Common";
 
-// Service
-import { createJob, deleteJob, editJob } from "./service/mutations";
-
 // Style
 import "./index.css";
 
