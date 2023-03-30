@@ -14,17 +14,20 @@ interface JobFormProps {
   show: boolean;
   onClose?: ModalProps["onClose"];
   isLoading?: boolean;
-  hasError?: boolean;
+  error?: boolean | string;
   onFormSubmit?: (param: Job) => void;
+  formDefaultValues?: Job;
 }
 const JobForm: FC<JobFormProps> = ({
   show,
   onClose,
   isLoading,
-  hasError,
+  error,
   onFormSubmit,
+  formDefaultValues,
 }: JobFormProps) => {
   const defaultValues = {
+    id: "",
     jobTitle: "",
     companyName: "",
     industry: "",
@@ -35,14 +38,15 @@ const JobForm: FC<JobFormProps> = ({
     maxSalary: "",
     totalEmployee: "",
     remoteType: "",
-    applyType: "",
-  };
+    applyType: "" as Job["applyType"],
+  } as Job;
 
   const {
     handleSubmit,
     formState: { errors },
     register,
     reset,
+    setValue,
   } = useForm({
     mode: "all",
     reValidateMode: "onBlur",
@@ -82,6 +86,15 @@ const JobForm: FC<JobFormProps> = ({
       clearForm();
     }
   }, [show]);
+
+  useEffect(() => {
+    if (formDefaultValues) {
+      const keys = Object.keys(formDefaultValues) as (keyof Job)[];
+      keys.forEach((key: keyof Job) => {
+        setValue(key, formDefaultValues[key]);
+      });
+    }
+  }, [formDefaultValues]);
 
   return (
     <Modal show={show} className="w-[577px]" onClose={onClose}>
@@ -194,10 +207,8 @@ const JobForm: FC<JobFormProps> = ({
           </div>
 
           <div className="mt-24 flex items-center justify-end">
-            {hasError ? (
-              <p className="text-font-error text-sm mr-4">
-                Something went wrong, please try again
-              </p>
+            {error ? (
+              <p className="text-font-error text-sm mr-4">{error}</p>
             ) : null}
             <Button variant="contained" type="submit" disabled={isLoading}>
               <span className="flex items-center justify-center">

@@ -11,4 +11,17 @@ export const createJob = ({ data }: { data: Job }) => {
   });
 };
 
-export const editJob = () => {};
+export const editJob = ({ data }: { data: Job }) => {
+  return fetch<Job>({
+    url: `${API_ENDPOINTS}/${data.id}`,
+    method: "PUT",
+    data,
+  });
+};
+
+export const deleteJob = ({ id }: { id: string }) => {
+  return fetch<Job>({
+    url: `${API_ENDPOINTS}/${id}`,
+    method: "DELETE",
+  });
+};

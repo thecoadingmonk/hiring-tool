@@ -1,3 +1,4 @@
+import type { AxiosError } from "axios";
 import axios from "axios";
 
 import type { Job } from "../types/Common";
@@ -21,6 +22,15 @@ export const fetch = <T>({
         const { data }: { data: T } = response;
         resolve(data);
       })
-      .catch((e) => reject(e));
+      .catch(({ response }) => {
+        console.log(response);
+        const message =
+          (response?.data &&
+            typeof response?.data === "string" &&
+            response.data) ||
+          "Something went wrong, please try again";
+
+        reject(message);
+      });
   });
 };
