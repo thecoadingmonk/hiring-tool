@@ -79,7 +79,7 @@ const JobCard: FC<JobCardProps> = ({
             </Button>
           ) : null}
 
-          <div className="flex gap-1">
+          <div className="flex gap-1 only:ml-auto">
             <Button
               variant="outlined"
               onClick={() => onDelete(id)}
