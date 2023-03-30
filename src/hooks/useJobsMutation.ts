@@ -81,6 +81,7 @@ const useJobsMutation = ({ callback }: useJobsMutationProps) => {
   };
 
   return {
+    clearError: () => setError(""),
     isLoading,
     deletingJob,
     error,

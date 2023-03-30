@@ -44,6 +44,7 @@ const App = () => {
     handleCreate,
     handleEdit,
     handleDelete,
+    clearError,
   } = useJobsMutation({
     callback: handleMutationCallback,
   });
@@ -55,6 +56,11 @@ const App = () => {
     // If the form is opened in edit mode then clear the value after closing
     if (showJobForm && formDefaultValues) {
       setFormDefaultValues(undefined);
+    }
+
+    // Clear error on closing the modal
+    if (showJobForm && error) {
+      clearError();
     }
   };
 
