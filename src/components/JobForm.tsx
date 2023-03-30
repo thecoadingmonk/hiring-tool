@@ -93,10 +93,10 @@ const JobForm: FC<JobFormProps> = ({
     if (val1 && val2 && !eval(val1 + operator + val2)) {
       switch (operator) {
         case "<=": {
-          return `value cannot be greater than ${val2}`;
+          return `value should be lesser than max value`;
         }
         case ">=": {
-          return `value cannot be lesser than ${val2}`;
+          return `value should be greater than min value`;
         }
         default:
           return "Please enter valid number";
@@ -192,9 +192,11 @@ const JobForm: FC<JobFormProps> = ({
               label="Experience"
               placeholder="Minimum"
               {...register("minExperience", {
-                validate: (v, f) =>
-                  numberValidator(v) &&
-                  evaluate(f.minExperience, f.maxExperience, "<="),
+                validate: {
+                  numberValidator: (v) => numberValidator(v),
+                  evaluate: (_, fv) =>
+                    evaluate(fv.minExperience, fv.maxExperience, "<="),
+                },
               })}
               error={errors?.minExperience?.message || ""}
             />
@@ -203,9 +205,11 @@ const JobForm: FC<JobFormProps> = ({
               label=""
               placeholder="Maximum"
               {...register("maxExperience", {
-                validate: (v, f) =>
-                  numberValidator(v) &&
-                  evaluate(f.maxExperience, f.minExperience, ">="),
+                validate: {
+                  numberValidator: (v) => numberValidator(v),
+                  evaluate: (_, fv) =>
+                    evaluate(fv.maxExperience, fv.minExperience, ">="),
+                },
               })}
               error={errors?.maxExperience?.message || ""}
             />
@@ -216,9 +220,11 @@ const JobForm: FC<JobFormProps> = ({
               label="Salary"
               placeholder="Minimum"
               {...register("minSalary", {
-                validate: (v, f) =>
-                  numberValidator(v) &&
-                  evaluate(f.minSalary, f.maxSalary, "<="),
+                validate: {
+                  numberValidator: (v) => numberValidator(v),
+                  evaluate: (_, fv) =>
+                    evaluate(fv.minSalary, fv.maxSalary, "<="),
+                },
               })}
               error={errors?.minSalary?.message || ""}
             />
@@ -227,9 +233,11 @@ const JobForm: FC<JobFormProps> = ({
               label=""
               placeholder="Maximum"
               {...register("maxSalary", {
-                validate: (v, f) =>
-                  numberValidator(v) &&
-                  evaluate(f.maxSalary, f.minSalary, ">="),
+                validate: {
+                  numberValidator: (v) => numberValidator(v),
+                  evaluate: (_, fv) =>
+                    evaluate(fv.maxSalary, fv.minSalary, ">="),
+                },
               })}
               error={errors?.maxSalary?.message || ""}
             />
