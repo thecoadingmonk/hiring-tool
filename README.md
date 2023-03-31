@@ -6,9 +6,9 @@ Simple tool to manage job information (create, edit, delete the jobs)
 
 ## Author
 
-| Name  | Samartha Hegde (The monk) |
+| Name  | [Samartha Hegde (The monk)](https://www.linkedin.com/in/samartha-hegde-6a6a79194/) |
 |-------|---------------------------|
-| Phone | 9632583163                |
+| Phone | +91 9632583163                |
 | Email | thecoadingmonk@gmail.com  |
 
 ## Objectives
