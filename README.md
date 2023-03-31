@@ -2,6 +2,15 @@
 
 Simple tool to manage job information (create, edit, delete the jobs)
 
+[Demo](https://main--celadon-frangipane-2c5ef7.netlify.app/)
+
+## Author
+
+| Name  | Samartha Hegde (The monk) |
+|-------|---------------------------|
+| Phone | 9632583163                |
+| Email | thecoadingmonk@gmail.com  |
+
 ## Objectives
 
 - List all the available Jobs in grid auto fit format
@@ -30,7 +39,7 @@ Simple tool to manage job information (create, edit, delete the jobs)
 
 ### Development
 
-### `npm start`
+#### `npm start`
 
 Runs the app in the development mode.\
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
@@ -38,7 +47,7 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 The page will reload if you make edits.\
 You will also see any lint errors in the console.
 
-### `npm run build`
+#### `npm run build`
 
 Builds the app for production to the `build` folder.\
 It correctly bundles React in production mode and optimizes the build for the best performance.
@@ -46,5 +55,9 @@ It correctly bundles React in production mode and optimizes the build for the be
 The build is minified and the filenames include the hashes.\
 Your app is ready to be deployed!
 
+### What is missing/extra?
 
-
+- No test cases written for any of the file as its not in a requirement document
+- Enabling edit options are added as extra item as it wasn't clear on both figma file and the requirement doc
+- Used [use-between](https://www.npmjs.com/package/use-between) npm package to share state between the hooks
+- No pagination as its not a multi page app
