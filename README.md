@@ -1,23 +1,42 @@
-# Getting Started with Create React App
+# Hiring tool (Great Vibes - assesment)
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Simple tool to manage job information (create, edit, delete the jobs)
 
-## Available Scripts
+## Objectives
 
-In the project directory, you can run:
+- List all the available Jobs in grid auto fit format
+- Provide an option to Create, Delete, and Edit jobs
+- Use [mockapi.io](https://mockapi.io/) for all the APIs
+- Styles should perfectly match the figma design
+
+## Solution
+
+### User flow
+- When user lands on the page user will be able to see all the available jobs list, if all the jobs are deleted then it shows empty message `No jobs found!`, if any API fails while loading the data it will show default error message `Something went wrong, please try again`
+- When user hit 'create a job` button it will open modal with form to enter job details
+- When user tries to create a new job it will validate the form with [react-hook-form](https://react-hook-form.com/api/) for required and number fields
+- Form has 2 steps and it will validate each step separately
+- Required fileds are marked with `*` symbol
+- Form has validation on min max values and number validation for inputs that accepts numbers
+- Shows loading state while creating a new job and disables the save button
+- Form doesn't have any back button to go to previous step
+- Form will close and clear all the fileds if user click on outside the modal
+- On any error while creating/editing the job it will be visible next to the save button
+- Edit options will not be visible by default but when user clicks on `Enable edit` button at the top it will be visible
+- On clicking on the `edit` option form will be filled with default available values
+- On clicking on the `delete` option user will be able to see loading icon and button will be disabled
+- On successful deletion of the job list will be updated automatically
+- On any kind of error list will fetched again from the API
+
+### Development
 
 ### `npm start`
 
 Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Open http://localhost:3000](http://localhost:3000) to view it in the browser.
 
 The page will reload if you make edits.\
 You will also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
 ### `npm run build`
 
@@ -27,20 +46,5 @@ It correctly bundles React in production mode and optimizes the build for the be
 The build is minified and the filenames include the hashes.\
 Your app is ready to be deployed!
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### `npm run eject`
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
