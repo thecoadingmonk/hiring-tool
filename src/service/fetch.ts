@@ -1,7 +1,21 @@
+// Library
 import axios from "axios";
 
+// Types
 import type { Job } from "../types/Common";
 
+// Constants
+import { DEFAULT_ERROR_MESSAGE } from "../constants";
+
+/**
+ * This is the centerlized method for making network callback
+ *
+ * @param {url} API endpoint
+ * @param {method} axios method type
+ * @param {data} value to be attached in the request body
+ *
+ * @return always returns the Generic type on success, error message on failure
+ */
 export const fetch = <T>({
   url,
   method,
@@ -19,15 +33,17 @@ export const fetch = <T>({
     })
       .then((response) => {
         const { data }: { data: T } = response;
+
         resolve(data);
       })
       .catch(({ response }) => {
         console.error(response);
+
         const message =
           (response?.data &&
             typeof response?.data === "string" &&
             response.data) ||
-          "Something went wrong, please try again";
+          DEFAULT_ERROR_MESSAGE;
 
         reject(message);
       });
