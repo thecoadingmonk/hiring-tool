@@ -89,6 +89,7 @@ const JobCard: FC<JobCardProps> = ({
 
           <CSSTransition
             in={showEditOptions}
+            unmountOnExit
             timeout={100}
             classNames={{
               appear: "transition opacity-0 duration-200 ease-in-out",
