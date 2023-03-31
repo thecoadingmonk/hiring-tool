@@ -23,6 +23,7 @@ const App = () => {
   const [formDefaultValues, setFormDefaultValues] = useState<Job | undefined>();
   const [showEditOptions, setShowEditOptions] = useState(false);
 
+  // This is used to handle any operation after mutating the data
   const handleMutationCallback = (type: OperationType) => {
     switch (type) {
       case "create":
@@ -35,9 +36,10 @@ const App = () => {
     }
   };
 
-  // Job query hook to load jobs
+  // Job query hook to load the jobs list
   const { jobs, error: jobsError, isLoading: isJobsLoading } = useJobsQuery();
 
+  // Job mutation hook to mutate the job data
   const {
     isLoading,
     deletingJob,
@@ -75,6 +77,7 @@ const App = () => {
     }
   };
 
+  // Set the default value to form and toggle visibility
   const onEdit = (formValues?: Job) => {
     setFormDefaultValues(formValues);
     toggleJobFormModal();
@@ -86,6 +89,7 @@ const App = () => {
         <Button onClick={toggleJobFormModal} variant="contained">
           Create a job
         </Button>
+
         <Button
           onClick={() => setShowEditOptions((prev) => !prev)}
           variant="outlined"

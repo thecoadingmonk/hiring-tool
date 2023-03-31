@@ -1,5 +1,8 @@
+// Types
 import type { FC } from "react";
 import type { RadioGroupProps } from "../types/RadioGroup";
+
+// Components
 import RadioButton from "./RadioButton";
 
 const RadioGroup: FC<RadioGroupProps> = ({

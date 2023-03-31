@@ -1,4 +1,5 @@
-import { FC } from "react";
+// Types
+import type { FC } from "react";
 
 interface SpinnerProps {
   className?: string;

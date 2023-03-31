@@ -1,14 +1,19 @@
+// Library
 import type { FC } from "react";
 
+// Components
 import Button from "./Button";
 import Spinner from "./Spinner";
 import CSSTransition from "react-transition-group/CSSTransition";
 
-import { Job } from "../types/Common";
+// Types
+import type { Job } from "../types/Common";
 
+// Icons
 import edit from "../icons/edit.svg";
 import trash from "../icons/trash.svg";
 
+// We are not going to reuse this so keeping it at component level
 interface JobCardProps {
   info: Job;
   onDelete: (id: string) => void;

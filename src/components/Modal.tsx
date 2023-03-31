@@ -1,8 +1,13 @@
+// Library
 import ReactDOM from "react-dom";
 import { useRef, useEffect } from "react";
+
+// Types
 import type { FC, ReactElement } from "react";
-import CSSTransition from "react-transition-group/CSSTransition";
 import { ModalProps } from "../types/Modal";
+
+// Components
+import CSSTransition from "react-transition-group/CSSTransition";
 
 const Portal: FC<{ children: ReactElement }> = ({
   children,

@@ -1,4 +1,7 @@
+// Library
 import React, { forwardRef, ForwardRefRenderFunction } from "react";
+
+// Types
 import { RadioButtonProps } from "../types/RadioButton";
 
 const RadioButton: ForwardRefRenderFunction<

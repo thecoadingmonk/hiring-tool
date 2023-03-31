@@ -1,4 +1,7 @@
+// Library
 import type { FC } from "react";
+
+// Types
 import type { ButtonProps, ButtonStyle } from "../types/Button";
 
 const Button: FC<ButtonProps> = ({

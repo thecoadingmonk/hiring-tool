@@ -1,16 +1,20 @@
+// Library
 import { FC, useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 
+// Components
 import Modal from "./Modal";
 import InputText from "./InputText";
 import Button from "./Button";
 import RadioGroup from "./RadioGroup";
 import Spinner from "./Spinner";
 
+// Types
 import type { ModalProps } from "../types/Modal";
 import type { RadioGroupProps } from "../types/RadioGroup";
-import { Job } from "../types/Common";
+import type { Job } from "../types/Common";
 
+// We are not going to reuse this so keeping it at component level
 interface JobFormProps {
   show: boolean;
   onClose?: ModalProps["onClose"];
@@ -19,6 +23,7 @@ interface JobFormProps {
   onFormSubmit?: (param: Job) => void;
   formDefaultValues?: Job;
 }
+
 const JobForm: FC<JobFormProps> = ({
   show,
   onClose,
@@ -53,6 +58,8 @@ const JobForm: FC<JobFormProps> = ({
     reValidateMode: "onBlur",
     defaultValues,
   });
+
+  // Radio buttons to select apply type
   const applyType: RadioGroupProps["items"] = [
     {
       value: "quick-apply",
@@ -68,11 +75,16 @@ const JobForm: FC<JobFormProps> = ({
   const [formData, setFormData] = useState({});
   const [currentStep, setCurrentStep] = useState(1);
 
+  // Method to clear the form
   const clearForm = () => {
     reset();
     setCurrentStep(1);
   };
-
+  /**
+   * This will be triggered on submitting the form
+   * if the current step is less than 2 then it will simply increment
+   * otherwise it will trigger the onFormSubmit method with form values
+   */
   const onSubmit = (values: any, stepCount: number) => {
     if (stepCount < 2) {
       setCurrentStep((prev) => prev + 1);
@@ -82,6 +94,7 @@ const JobForm: FC<JobFormProps> = ({
     }
   };
 
+  // Number filed validator
   const numberValidator = (val: unknown): string | boolean => {
     if (val && typeof val === "string" && isNaN(Number(val))) {
       return "Please enter valid number";
@@ -90,6 +103,7 @@ const JobForm: FC<JobFormProps> = ({
     return true;
   };
 
+  // evaluator to make sure min and max values are correct
   const evaluate = (val1: unknown, val2: unknown, operator: string) => {
     // eslint-disable-next-line
     if (val1 && val2 && !eval(val1 + operator + val2)) {
@@ -108,6 +122,7 @@ const JobForm: FC<JobFormProps> = ({
     return true;
   };
 
+  // This is used to re-render on changing the visibility value
   useEffect(() => {
     if (!show) {
       clearForm();
@@ -115,6 +130,12 @@ const JobForm: FC<JobFormProps> = ({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [show]);
 
+  /**
+   * This hook is to fill the form with default values
+   *
+   * DEBT: assigning the default value directly to useForm hoook while creating
+   * is not working so we are using setValue method
+   */
   useEffect(() => {
     if (formDefaultValues) {
       const keys = Object.keys(formDefaultValues) as (keyof Job)[];
@@ -131,6 +152,7 @@ const JobForm: FC<JobFormProps> = ({
         <form onSubmit={handleSubmit((v) => onSubmit(v, 1))}>
           <div className="flex justify-between">
             <h3>Create a job</h3>
+
             <h4>step 1</h4>
           </div>
 
@@ -188,6 +210,7 @@ const JobForm: FC<JobFormProps> = ({
         <form onSubmit={handleSubmit((v) => onSubmit(v, 2))}>
           <div className="flex justify-between">
             <h3>Create a job</h3>
+
             <h4>step 2</h4>
           </div>
 

@@ -1,4 +1,7 @@
+// Library
 import React, { forwardRef, ForwardRefRenderFunction } from "react";
+
+// Types
 import type { InputTextProps } from "../types/InputText";
 
 const InputText: ForwardRefRenderFunction<HTMLInputElement, InputTextProps> = (
