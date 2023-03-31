@@ -61,3 +61,4 @@ Your app is ready to be deployed!
 - Enabling edit options are added as extra item as it wasn't clear on both figma file and the requirement doc
 - Used [use-between](https://www.npmjs.com/package/use-between) npm package to share state between the hooks
 - No pagination as its not a multi page app
+- Its not mobile friendly as mocks up are not provided for smaller screens
