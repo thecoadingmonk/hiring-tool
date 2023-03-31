@@ -57,7 +57,7 @@ const JobCard: FC<JobCardProps> = ({
           <h6 className="font-normal text-base whitespace-nowrap max-w-[700px] text-ellipsis overflow-hidden">
             {companyName} - {industry}
           </h6>
-          <p className="text-gray-40 font-normal text-base whitespace-nowrap max-w-[700px] text-ellipsis overflow-hidden empty:mt-6">
+          <p className="text-font-placeholder font-normal text-base whitespace-nowrap max-w-[700px] text-ellipsis overflow-hidden empty:mt-6">
             {/* This condition is to make empty selector work if not present */}
             {location ? location : ""}
             {remoteType ? ` ${remoteType}` : ""}

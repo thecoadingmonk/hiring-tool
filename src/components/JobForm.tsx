@@ -151,9 +151,9 @@ const JobForm: FC<JobFormProps> = ({
       {currentStep === 1 ? (
         <form onSubmit={handleSubmit((v) => onSubmit(v, 1))}>
           <div className="flex justify-between">
-            <h3>Create a job</h3>
+            <h3 className="text-xl text-gray-90 font-normal">Create a job</h3>
 
-            <h4>step 1</h4>
+            <h4 className="text-base text-gray-90 font-medium">step 1</h4>
           </div>
 
           <div className="mt-6">
@@ -209,9 +209,9 @@ const JobForm: FC<JobFormProps> = ({
       ) : currentStep === 2 ? (
         <form onSubmit={handleSubmit((v) => onSubmit(v, 2))}>
           <div className="flex justify-between">
-            <h3>Create a job</h3>
+            <h3 className="text-xl text-gray-90 font-normal">Create a job</h3>
 
-            <h4>step 2</h4>
+            <h4 className="text-base text-gray-90 font-medium">step 2</h4>
           </div>
 
           <div className="grid row-auto sm:grid-cols-2 gap-6 mt-6">
