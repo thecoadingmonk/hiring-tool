@@ -2,6 +2,7 @@ import type { FC } from "react";
 
 import Button from "./Button";
 import Spinner from "./Spinner";
+import CSSTransition from "react-transition-group/CSSTransition";
 
 import { Job } from "../types/Common";
 
@@ -13,6 +14,7 @@ interface JobCardProps {
   onDelete: (id: string) => void;
   onEdit: (job: Job) => void;
   isDeleting?: boolean;
+  showEditOptions?: boolean;
 }
 
 const JobCard: FC<JobCardProps> = ({
@@ -20,6 +22,7 @@ const JobCard: FC<JobCardProps> = ({
   onDelete,
   onEdit,
   isDeleting = false,
+  showEditOptions = false,
 }: JobCardProps) => {
   const {
     id,
@@ -84,22 +87,42 @@ const JobCard: FC<JobCardProps> = ({
             </Button>
           ) : null}
 
-          <div className="flex gap-1 only:ml-auto">
-            <Button
-              variant="outlined"
-              onClick={() => onDelete(id)}
-              disabled={isDeleting}
+          <CSSTransition
+            in={showEditOptions}
+            timeout={100}
+            classNames={{
+              appear: "transition opacity-0 duration-200 ease-in-out",
+              appearActive: "transition opacity-0 duration-200 ease-in-out",
+              appearDone: "transition opacity-100 duration-200 ease-in-out",
+              enter: "transition opacity-0 duration-200 ease-in-out",
+              enterActive: "transition opacity-500 duration-200 ease-in-out",
+              enterDone: "transition opacity-100 duration-200 ease-in-out",
+              exit: "transition opacity-100 duration-200 ease-in-out",
+              exitActive: "transition opacity-50 duration-200 ease-in-out",
+              exitDone: "transition opacity-0 duration-200 ease-in-out",
+            }}
+          >
+            <div
+              className={`flex gap-1 only:ml-auto transition duration-200 ease-in-out ${
+                showEditOptions ? "opacity-100" : "opacity-0"
+              }`}
             >
-              {isDeleting ? (
-                <Spinner />
-              ) : (
-                <img src={trash} alt="" className="w-6 h-6" />
-              )}
-            </Button>
-            <Button variant="outlined" onClick={() => onEdit(info)}>
-              <img src={edit} alt="" className="w-6 h-6" />
-            </Button>
-          </div>
+              <Button
+                variant="outlined"
+                onClick={() => onDelete(id)}
+                disabled={isDeleting}
+              >
+                {isDeleting ? (
+                  <Spinner />
+                ) : (
+                  <img src={trash} alt="" className="w-6 h-5" />
+                )}
+              </Button>
+              <Button variant="outlined" onClick={() => onEdit(info)}>
+                <img src={edit} alt="" className="w-6 h-5" />
+              </Button>
+            </div>
+          </CSSTransition>
         </div>
       </div>
     </div>

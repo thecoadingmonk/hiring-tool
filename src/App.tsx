@@ -21,6 +21,7 @@ const App = () => {
   // State variables
   const [showJobForm, setShowJobForm] = useState<boolean>(false);
   const [formDefaultValues, setFormDefaultValues] = useState<Job | undefined>();
+  const [showEditOptions, setShowEditOptions] = useState(false);
 
   const handleMutationCallback = (type: OperationType) => {
     switch (type) {
@@ -81,9 +82,16 @@ const App = () => {
 
   return (
     <div className="h-screen overflow-hidden">
-      <div className="p-4">
+      <div className="flex p-4 gap-4">
         <Button onClick={toggleJobFormModal} variant="contained">
           Create a job
+        </Button>
+        <Button
+          onClick={() => setShowEditOptions((prev) => !prev)}
+          variant="outlined"
+          disabled={!jobs.length}
+        >
+          {showEditOptions ? "Disable" : "Enable"} edit
         </Button>
       </div>
 
@@ -100,6 +108,7 @@ const App = () => {
               isDeleting={each.id === deletingJob}
               onDelete={handleDelete}
               onEdit={onEdit}
+              showEditOptions={showEditOptions}
             />
           ))}
         </div>

@@ -35,19 +35,31 @@ const Modal: FC<ModalProps> = ({
     <CSSTransition
       in={show}
       unmountOnExit
-      timeout={{ enter: 0, exit: 300 }}
-      appear
+      timeout={200}
+      classNames={{
+        appear: "transition opacity-0 duration-200 ease-in-out",
+        appearActive: "transition opacity-0 duration-200 ease-in-out",
+        appearDone: "transition opacity-100 duration-200 ease-in-out",
+        enter: "transition opacity-0 duration-200 ease-in-out",
+        enterActive: "transition opacity-500 duration-200 ease-in-out",
+        enterDone: "transition opacity-100 duration-200 ease-in-out",
+        exit: "transition opacity-100 duration-200 ease-in-out",
+        exitActive: "transition opacity-50 duration-200 ease-in-out",
+        exitDone: "transition opacity-0 duration-200 ease-in-out",
+      }}
     >
       <Portal>
         <div
-          className="modal fixed top-0 bottom-0 right-0 left-0 bg-gray-10/50 flex items-center justify-center transition ease-in-out duration-300"
+          className="fixed top-0 bottom-0 right-0 left-0 bg-gray-10/50 flex items-center justify-center"
           onClick={(e) => {
             e.stopPropagation();
             onClose?.(e);
           }}
         >
           <div
-            className={`modal-content bg-white p-8 rounded-[10px] border border-gray-20 ${className}`}
+            className={`bg-white p-8 rounded-[10px] border border-gray-20 transition duration-100 ease-in-out ${
+              show ? "opacity-100" : "opacity-0"
+            } ${className}`}
             onClick={(e) => e.stopPropagation()}
           >
             {children}
