@@ -64,10 +64,12 @@ const JobForm: FC<JobFormProps> = ({
     {
       value: "quick-apply",
       label: "Quick apply",
+      id: "quick-apply",
       ...register("applyType"),
     },
     {
       value: "external-apply",
+      id: "external-apply",
       label: "External apply",
       ...register("applyType"),
     },
