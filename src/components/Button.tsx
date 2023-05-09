@@ -4,6 +4,7 @@ import type { FC } from "react";
 // Types
 import type { ButtonProps, ButtonStyle } from "../types/Button";
 
+// Button component
 const Button: FC<ButtonProps> = ({
   children,
   variant,
